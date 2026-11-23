@@ -662,6 +662,57 @@ img{display:block}
 @keyframes toastIn{from{opacity:0;transform:translate(-50%,20px) scale(.9)}}
 @keyframes cf{0%{transform:translate(0,0) rotate(0);opacity:1}35%{transform:translate(var(--dx),var(--dy)) rotate(calc(var(--r)*.4));opacity:1}100%{transform:translate(calc(var(--dx)*1.35),560px) rotate(var(--r));opacity:0}}
 
+/* =========================================================
+   SPLASH SCREEN — gaya pop, dasar biru
+   ========================================================= */
+.splash.sp2{background:linear-gradient(180deg,#0880DE 0,#2F93E4 45%,#5AADEB 100%);transition:opacity .45s ease, transform .45s ease}
+.sp2-dots{position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(circle,#FFD23F 0 4px,transparent 4.6px) 14% 12%/14px 14px no-repeat,
+    radial-gradient(circle,#FF4D8D 0 3px,transparent 3.6px) 82% 9%/10px 10px no-repeat,
+    radial-gradient(circle,#C8F169 0 4px,transparent 4.6px) 90% 46%/14px 14px no-repeat,
+    radial-gradient(circle,#fff 0 2.5px,transparent 3px) 8% 52%/8px 8px no-repeat,
+    radial-gradient(circle,#FFD23F 0 3px,transparent 3.6px) 22% 84%/10px 10px no-repeat,
+    radial-gradient(circle,#fff 0 2.5px,transparent 3px) 74% 88%/8px 8px no-repeat,
+    radial-gradient(circle at 80% 18%,rgba(255,255,255,.22),transparent 45%),
+    radial-gradient(circle at 15% 85%,rgba(11,37,69,.18),transparent 50%);
+  animation:twinkle 2.6s ease-in-out infinite}
+/* kartu logo putih bergaya stiker */
+.sp2-card{position:relative;z-index:2;width:236px;padding:26px 24px 22px;background:#fff;border:2.5px solid #0B2545;border-radius:30px;box-shadow:7px 7px 0 #0B2545;display:flex;flex-direction:column;align-items:center;
+  animation:cardIn .75s cubic-bezier(.3,1.5,.5,1) .1s backwards}
+.sp2-icon{width:118px;animation:iconIn .7s cubic-bezier(.3,1.7,.5,1) .45s backwards, floaty 3s ease-in-out 1.3s infinite}
+.sp2-word{width:172px;margin-top:16px;animation:rise .5s ease-out .7s backwards}
+/* tagline sebagai stiker kuning miring */
+.sp2-tag{position:relative;z-index:3;margin-top:-10px;padding:7px 16px;background:#FFD23F;color:#0B2545;border:2px solid #0B2545;border-radius:12px;box-shadow:3px 3px 0 #0B2545;font-size:13px;font-weight:600;transform:rotate(-3deg);
+  animation:stampIn .55s cubic-bezier(.3,1.7,.5,1) 1s backwards}
+.sp2-tag b{font-weight:800}
+/* stiker kategori melayang di pinggir */
+.sp2-stk{position:absolute;z-index:1;width:62px;height:62px;border-radius:18px;border:2px solid #0B2545;box-shadow:3px 3px 0 #0B2545;display:flex;align-items:center;justify-content:center;transform:rotate(var(--r));
+  animation:stkIn .6s cubic-bezier(.3,1.6,.5,1) backwards, bobR 3.2s ease-in-out infinite}
+.sp2-stk svg{width:32px;height:32px}
+.sp2-stk.s1{top:13%;left:9%;background:#FFE7D6;color:#E8590C;animation-delay:.55s,1.2s}
+.sp2-stk.s2{top:19%;right:8%;background:#D9EEFF;color:#0668B8;animation-delay:.7s,1.5s}
+.sp2-stk.s3{bottom:23%;left:11%;background:#FFE0EE;color:#D6337F;animation-delay:.85s,1.8s}
+.sp2-stk.s4{bottom:18%;right:10%;background:#ECF8CF;color:#4D7C0F;animation-delay:1s,1.1s}
+.sp2-spark{position:absolute;z-index:1;color:#fff;font-size:18px;animation:spark 1.8s ease-in-out infinite}
+.sp2-spark.k1{top:31%;left:22%;animation-delay:.2s}
+.sp2-spark.k2{top:29%;right:24%;font-size:13px;color:#FFD23F;animation-delay:.9s}
+.sp2-spark.k3{bottom:31%;right:28%;font-size:15px;color:#C8F169;animation-delay:1.4s}
+/* loading bar pop */
+.sp2-load{position:absolute;bottom:92px;width:150px;height:14px;border-radius:8px;background:#fff;border:2px solid #0B2545;box-shadow:3px 3px 0 #0B2545;overflow:hidden;animation:rise .4s 1.1s backwards}
+.sp2-load i{display:block;height:100%;width:0;background:repeating-linear-gradient(-45deg,#FFD23F 0 8px,#FFC300 8px 16px);border-right:2px solid #0B2545;animation:load 1.7s 1.2s ease-in-out forwards, stripes .6s linear infinite}
+.sp2-foot{position:absolute;bottom:46px;font-size:11.5px;font-weight:700;color:#fff;letter-spacing:.4px;padding:4px 12px;border-radius:999px;background:rgba(11,37,69,.22);animation:rise .5s 1.2s backwards}
+@keyframes cardIn{0%{opacity:0;transform:translateY(40px) scale(.6) rotate(-6deg)}100%{opacity:1;transform:none}}
+@keyframes iconIn{0%{opacity:0;transform:scale(.3) rotate(-25deg)}100%{opacity:1;transform:none}}
+@keyframes stampIn{0%{opacity:0;transform:rotate(-3deg) scale(1.8)}100%{opacity:1;transform:rotate(-3deg) scale(1)}}
+@keyframes stkIn{0%{opacity:0;transform:rotate(var(--r)) scale(.2)}100%{opacity:1;transform:rotate(var(--r)) scale(1)}}
+@keyframes bobR{0%,100%{translate:0 0}50%{translate:0 -8px}}
+@keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -5px}}
+@keyframes spark{0%,100%{opacity:.2;transform:scale(.6) rotate(0)}50%{opacity:1;transform:scale(1.15) rotate(45deg)}}
+@keyframes twinkle{50%{opacity:.75}}
+@keyframes stripes{to{background-position:22.6px 0}}
+@media (prefers-reduced-motion:reduce){.sp2 *{animation:none!important}.sp2-load i{width:100%}}
+
 /* dropdown jam antar di keranjang + kotak teks ruangan */
 .slot-sel{margin:-2px 0 8px;border:1.5px solid var(--navy);box-shadow:var(--pop-s);background-color:#fff}
 .slot-in{animation:rise .3s cubic-bezier(.2,.9,.3,1.15) backwards}
@@ -1513,14 +1564,20 @@ function render(keepScroll){
   const hs = $app.querySelector('.hs'), left = hs ? hs.scrollLeft : 0;
   const ae = document.activeElement, focusId = ae && ae.id && $app.contains(ae) ? ae.id : null;
   const r = cur();
-  $app.innerHTML = (S.splash ? `<div class="splash" data-a="skipSplash" role="img" aria-label="ByFood">
-      <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
-      <span class="ring"></span><span class="ring r2"></span>
-      <img class="sp-icon" src="${IMG.logoIcon}" alt="">
-      <img class="sp-word" src="${IMG.logoWord}" alt="ByFood">
-      <div class="sp-tag">Kantin &amp; dorm, <b>tanpa antre</b></div>
-      <div class="sp-load"><i></i></div>
-      <div class="sp-foot">BINUS University · Kantin &amp; Dorm</div>
+  $app.innerHTML = (S.splash ? `<div class="splash sp2" data-a="skipSplash" role="img" aria-label="ByFood — Kantin & dorm, tanpa antre">
+      <span class="sp2-dots"></span>
+      <span class="sp2-stk s1" style="--r:-12deg">${I.c_berat}</span>
+      <span class="sp2-stk s2" style="--r:10deg">${I.c_minum}</span>
+      <span class="sp2-stk s3" style="--r:14deg">${I.c_snack}</span>
+      <span class="sp2-stk s4" style="--r:-9deg">${I.c_dessert}</span>
+      <span class="sp2-spark k1">✦</span><span class="sp2-spark k2">✦</span><span class="sp2-spark k3">✦</span>
+      <div class="sp2-card">
+        <img class="sp2-icon" src="${IMG.logoIcon}" alt="">
+        <img class="sp2-word" src="${IMG.logoWord}" alt="ByFood">
+      </div>
+      <div class="sp2-tag">Kantin &amp; dorm, <b>tanpa antre</b> ✨</div>
+      <div class="sp2-load"><i></i></div>
+      <div class="sp2-foot">BINUS University</div>
     </div>` : '')
     + animGuard(r);
   if(keepScroll){ const s=$app.querySelector('.scroll'); if(s) s.scrollTop = top; const h=$app.querySelector('.hs'); if(h) h.scrollLeft = left; }
