@@ -478,6 +478,203 @@ img{display:block}
 .modal .mi{font-size:36px;line-height:1}
 .modal .acts{display:flex;gap:8px}
 .modal .acts .btn{flex:1;height:36px;font-size:12.5px}
+
+/* =========================================================
+   REVISI 2 — gaya POP di semua layar + ANIMASI
+   Warna dasar tetap biru (#0880DE); pastel hanya sebagai aksen.
+   ========================================================= */
+:root{--t1:#D9EEFF;--t2:#FFE7D6;--t3:#FFE0EE;--t4:#ECF8CF;--t5:#FFF1BF;--t6:#EAE4FF;--pop-s:2px 2px 0 #0B2545}
+/* dekorasi header: titik-titik confetti kecil di atas gradasi biru */
+.screen::after{content:'';position:absolute;left:0;right:0;top:0;height:170px;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(circle,#FFD23F 0 3px,transparent 3.6px) 86% 22px/12px 12px no-repeat,
+    radial-gradient(circle,#FF4D8D 0 2.5px,transparent 3px) 66% 70px/10px 10px no-repeat,
+    radial-gradient(circle,#C8F169 0 3px,transparent 3.6px) 95% 108px/12px 12px no-repeat,
+    radial-gradient(circle,rgba(255,255,255,.55) 0 2px,transparent 2.6px) 52% 26px/8px 8px no-repeat,
+    radial-gradient(circle at 70% 30%,rgba(255,255,255,.22),transparent 62%) 100% -60px/220px 220px no-repeat}
+.screen.plain::after{display:none}
+.screen > *{position:relative;z-index:1}
+
+/* --- komponen umum --- */
+.search{border:1.5px solid var(--navy);box-shadow:var(--pop)}
+.btn{border:1.5px solid var(--navy);box-shadow:var(--pop-s);transition:transform .1s ease, box-shadow .1s ease}
+.btn:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--navy)}
+.btn:disabled{box-shadow:none}
+.btn-danger{background:#E5484D}
+.fab{border:2px solid var(--navy);box-shadow:3px 3px 0 var(--navy);transition:transform .12s}
+.fab.ring{border:2px solid var(--navy);background:#fff}
+.fab:active{transform:translate(2px,2px) scale(.96);box-shadow:1px 1px 0 var(--navy)}
+.bnav{border-top:1.5px solid var(--navy);box-shadow:none}
+.nv{position:relative}
+.nv.on::after{content:'';position:absolute;bottom:-9px;width:22px;height:4px;border-radius:3px;background:var(--blue)}
+.ibtn.me img{border-color:#fff;box-shadow:2px 2px 0 var(--navy)}
+.hdr .back:active{background:rgba(255,255,255,.18)}
+
+/* chip kategori: warna-warni pastel, yang aktif tetap biru */
+.chip{border:1.5px solid var(--navy);color:var(--navy);font-weight:600;transition:transform .1s}
+.chip.c0{background:var(--t1)}.chip.c1{background:var(--t2)}.chip.c2{background:var(--t3)}
+.chip.c3{background:var(--t4)}.chip.c4{background:var(--t5)}.chip.c5{background:var(--t6)}
+.chip.on{background:var(--blue);color:#fff;box-shadow:var(--pop-s);animation:sel .3s cubic-bezier(.3,1.6,.5,1)}
+.chips{padding-top:2px;padding-bottom:12px}
+.fchip{border:1.5px solid var(--navy);background:#fff}
+.fchip.on{background:var(--blue);color:#fff;border-color:var(--navy);box-shadow:var(--pop-s)}
+.fbar{padding-top:2px;padding-bottom:12px}
+.srcseg button{border:1.5px solid var(--navy);color:var(--navy)}
+.srcseg button.on{background:var(--blue);border-color:var(--navy);box-shadow:var(--pop-s)}
+.seg button{border:1.5px solid var(--navy)}
+.seg button.on{box-shadow:var(--pop-s)}
+.srctag{border:1px solid currentColor}
+.tag{border:1px solid currentColor}
+.pill{border:1px solid rgba(11,37,69,.12)}
+
+/* tenant & menu jadi kartu pop dengan aksen warna tenant */
+.trow{border:1.5px solid var(--navy);box-shadow:var(--pop);background:linear-gradient(90deg,var(--tint,var(--soft)) 0 84px,#fff 84px);transition:transform .1s, box-shadow .1s}
+.trow:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--navy)}
+.trow img{border:1.5px solid var(--navy)}
+.trow .go{width:28px;height:28px;border-radius:50%;background:var(--soft);color:var(--blue);display:flex;align-items:center;justify-content:center}
+.list{border-top:0;padding-bottom:22px}
+.tenant-h{margin:16px 22px 0;border:1.5px solid var(--navy);border-radius:14px;padding:9px 12px;background:var(--tint,var(--soft))}
+.row{margin:10px 22px 0;padding:10px;border:1.5px solid var(--navy);border-radius:18px;box-shadow:var(--pop)}
+.row img{width:88px;height:88px;border-radius:12px;border:1.5px solid var(--navy)}
+.row .info{padding-top:2px}
+.row .tn{font-size:12px}
+.row .pr{color:var(--blue-d);font-weight:700}
+.food-card .ph img{border-bottom:1.5px solid var(--navy)}
+.food-card .add,.stp{border:1.5px solid var(--navy)}
+.stp{animation:none}
+.stp.fx{animation:popIn .35s cubic-bezier(.3,1.7,.5,1)}
+.cat svg{border:1.5px solid var(--navy)}
+.bchip:active,.cat:active{transform:translate(2px,2px)}
+
+/* keranjang */
+.loc-card,.cgroup,.bill{border:1.5px solid var(--navy);box-shadow:var(--pop)}
+.loc-card.empty-loc{border-style:dashed;box-shadow:3px 3px 0 var(--blue)}
+.cg-h{background:var(--tint,var(--soft));border-bottom:1.5px solid var(--navy)}
+.cgroup .citem{border-top:1.5px dashed #C9D5E0}
+.opt{border:1.5px solid var(--navy);border-radius:10px}
+.opt.on{background:var(--soft);border-color:var(--navy);color:var(--blue-d);box-shadow:var(--pop-s)}
+.qty button{border:1.5px solid var(--navy);border-radius:8px}
+.qty button:last-child{background:var(--blue);color:#fff}
+.qty button:hover{background:var(--soft)}.qty button:last-child:hover{background:var(--blue-d)}
+.inote{border:1px solid currentColor}
+.vrow{border:1.5px dashed var(--blue)}
+.pay-bar{border-top:1.5px solid var(--navy);border-bottom:0}
+.note{border:1.5px solid var(--line)}
+
+/* pesanan, tracking, notifikasi */
+.ord{margin:12px 18px 0;width:calc(100% - 36px);border:1.5px solid var(--navy);border-radius:16px;box-shadow:var(--pop)}
+.ord img{border:1.5px solid var(--navy);border-radius:10px}
+.ord .pr{color:var(--blue-d)}
+.eta-card,.card,.bill.trk{border:1.5px solid var(--navy);box-shadow:var(--pop)}
+.eta-chip{border:1px solid currentColor}
+.who img{border:1.5px solid var(--navy);border-radius:10px}
+.sq{border:1.5px solid var(--navy);box-shadow:var(--pop-s)}
+.sq:active{transform:translate(2px,2px);box-shadow:none}
+.cxl{box-shadow:3px 3px 0 var(--orange)}
+.route .pt{border:1.5px solid var(--navy)}
+.route .mv{border-color:var(--navy);border-width:2px;animation:bob .9s ease-in-out infinite}
+.tl li.cur .c{animation:curp 1.6s ease-out infinite}
+.ntf{margin:12px 18px 0;width:calc(100% - 36px);border:1.5px solid var(--navy);border-radius:16px;box-shadow:var(--pop);padding:14px}
+.ntf img{width:64px;height:64px;border:1.5px solid var(--navy)}
+.ntf.new{background:var(--soft);box-shadow:3px 3px 0 var(--blue)}
+.bub{border:1.5px solid var(--navy)}
+.bub.me{border-color:var(--navy);box-shadow:var(--pop-s)}
+.composer{border-top:1.5px solid var(--navy)}
+.composer input{border:1.5px solid var(--line)}
+.send{border:1.5px solid var(--navy)}
+
+/* profil: statistik warna-warni */
+.pcard{border:1.5px solid var(--navy);box-shadow:var(--pop)}
+.avatar img{border:2px solid var(--navy)}
+.avatar .ed{border-color:var(--navy);box-shadow:var(--pop-s)}
+.stat{border:1.5px solid var(--navy)}
+.stat:nth-child(1){background:var(--t1)}.stat:nth-child(2){background:var(--t2)}.stat:nth-child(3){background:var(--t4)}
+.linkrow{border:1.5px solid var(--navy)}
+
+/* sheet, modal, toast */
+.sheet{border-top:2px solid var(--navy);animation:up .34s cubic-bezier(.2,1.25,.4,1)}
+.sopt{border:1.5px solid var(--line);transition:transform .1s}
+.sopt.on{border-color:var(--navy);background:var(--soft);box-shadow:var(--pop-s)}
+.sopt:active{transform:scale(.98)}
+.modal{border:2px solid var(--navy);box-shadow:5px 5px 0 var(--navy);border-radius:18px;animation:popIn .38s cubic-bezier(.3,1.5,.5,1)}
+.toast{background:var(--navy);border:1.5px solid #fff;box-shadow:3px 3px 0 rgba(0,0,0,.25);font-weight:600;animation:toastIn .4s cubic-bezier(.3,1.5,.5,1)}
+.dim.still,.dim.still .sheet,.dim.still .modal,.toast.still{animation:none}
+.dim.still .modal > svg *{animation:none!important;stroke-dashoffset:0!important}
+
+/* ---------- ANIMASI ---------- */
+/* 1. transisi pindah layar: maju geser dari kanan, kembali dari kiri, tab memudar */
+.anim-in.nav-push .scroll,.anim-in.nav-push .msgs,.anim-in.nav-push .paybox{animation:inPush .34s cubic-bezier(.2,.8,.3,1) backwards}
+.anim-in.nav-pop  .scroll,.anim-in.nav-pop  .msgs,.anim-in.nav-pop  .paybox{animation:inPop .34s cubic-bezier(.2,.8,.3,1) backwards}
+.anim-in.nav-fade .scroll,.anim-in.nav-fade .msgs,.anim-in.nav-fade .paybox{animation:inFade .34s ease-out backwards}
+.anim-in .hdr h1,.anim-in .chat-hdr h1{animation:inFade .32s ease-out backwards}
+/* 2. isi layar muncul berurutan (stagger) */
+.anim-in .scroll > *,.anim-in .stg > *,.anim-in.stg > *,.anim-in.scroll > *,.anim-in .list > *,.anim-in .tl > li{animation:rise .46s cubic-bezier(.2,.9,.3,1.15) backwards}
+.anim-in .scroll > :nth-child(2),.anim-in .stg > :nth-child(2),.anim-in.stg > :nth-child(2),.anim-in .list > :nth-child(2),.anim-in.scroll > :nth-child(2),.anim-in .tl > :nth-child(2){animation-delay:.05s}
+.anim-in .scroll > :nth-child(3),.anim-in .stg > :nth-child(3),.anim-in.stg > :nth-child(3),.anim-in .list > :nth-child(3),.anim-in.scroll > :nth-child(3),.anim-in .tl > :nth-child(3){animation-delay:.10s}
+.anim-in .scroll > :nth-child(4),.anim-in .stg > :nth-child(4),.anim-in.stg > :nth-child(4),.anim-in .list > :nth-child(4),.anim-in.scroll > :nth-child(4),.anim-in .tl > :nth-child(4){animation-delay:.15s}
+.anim-in .scroll > :nth-child(5),.anim-in .stg > :nth-child(5),.anim-in.stg > :nth-child(5),.anim-in .list > :nth-child(5),.anim-in.scroll > :nth-child(5),.anim-in .tl > :nth-child(5){animation-delay:.20s}
+.anim-in .scroll > :nth-child(6),.anim-in .stg > :nth-child(6),.anim-in.stg > :nth-child(6),.anim-in .list > :nth-child(6),.anim-in.scroll > :nth-child(6){animation-delay:.25s}
+.anim-in .scroll > :nth-child(7),.anim-in .stg > :nth-child(7),.anim-in.stg > :nth-child(7),.anim-in .list > :nth-child(7),.anim-in.scroll > :nth-child(7){animation-delay:.30s}
+.anim-in .scroll > :nth-child(n+8),.anim-in .stg > :nth-child(n+8),.anim-in.stg > :nth-child(n+8),.anim-in .list > :nth-child(n+8),.anim-in.scroll > :nth-child(n+8){animation-delay:.35s}
+/* 3. ikon kategori memantul masuk, bergoyang saat ditekan */
+.anim-in .cat svg{animation:popIn .55s cubic-bezier(.3,1.7,.5,1) backwards}
+.anim-in .cat:nth-child(2) svg{animation-delay:.08s}.anim-in .cat:nth-child(3) svg{animation-delay:.16s}.anim-in .cat:nth-child(4) svg{animation-delay:.24s}
+.cat:active svg{animation:wiggle .4s}
+/* 4. lambaian tangan di sapaan */
+.wave{display:inline-block;transform-origin:70% 75%}
+.anim-in .wave{animation:wave 1.5s .35s ease-in-out}
+/* 5. kilau di banner BINUS Apps */
+.bx-banner .shine{position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.35) 50%,transparent 65%);transform:translateX(-110%);animation:shine 3.4s ease-in-out infinite}
+/* 6. titik "live" di pesanan aktif */
+.live{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--orange);margin-right:6px;vertical-align:1px;animation:livep 1.4s ease-out infinite}
+/* 7. ikon keranjang bergoyang + "+1" melayang saat tambah item */
+.nv-ic.shake svg{animation:shake .45s ease-in-out}
+.plus1{position:fixed;z-index:99;transform:translate(-50%,-50%);font:800 13px Poppins,system-ui,sans-serif;color:var(--navy);background:var(--yellow);border:1.5px solid var(--navy);border-radius:10px;padding:1px 8px;pointer-events:none;animation:plus1 .85s cubic-bezier(.2,.8,.3,1) forwards}
+/* 8. bintang rating memantul */
+.stars button{transition:transform .12s}
+.stars button:active{transform:scale(.9)}
+.stars button.fx svg{animation:starpop .5s cubic-bezier(.3,1.8,.5,1) backwards;animation-delay:calc(var(--i) * .05s)}
+/* 9. centang pesanan berhasil tergambar + confetti */
+.modal > svg circle{stroke-dasharray:132;stroke-dashoffset:132;animation:draw .5s .1s ease-out forwards}
+.modal > svg path{stroke-dasharray:40;stroke-dashoffset:40;animation:draw .35s .55s ease-out forwards}
+.cf{position:fixed;z-index:98;pointer-events:none;animation:cf 1.7s cubic-bezier(.2,.6,.4,1) forwards}
+/* 10. hover di desktop */
+@media (hover:hover){
+  .pop:hover,.trow:hover,.row:hover,.ord:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--navy)!important}
+  .btn:hover:not(:disabled){filter:brightness(1.06)}
+}
+
+@keyframes inPush{from{opacity:0;transform:translateX(40px)}}
+@keyframes inPop{from{opacity:0;transform:translateX(-40px)}}
+@keyframes inFade{from{opacity:0;transform:translateY(10px)}}
+@keyframes popIn{from{opacity:0;transform:scale(.4)}}
+@keyframes sel{from{transform:scale(.85)}}
+@keyframes wiggle{25%{transform:rotate(-12deg)}50%{transform:rotate(10deg)}75%{transform:rotate(-6deg)}}
+@keyframes wave{0%,60%,100%{transform:rotate(0)}10%,30%{transform:rotate(18deg)}20%,40%{transform:rotate(-10deg)}}
+@keyframes shine{0%,55%{transform:translateX(-110%)}100%{transform:translateX(110%)}}
+@keyframes livep{0%{box-shadow:0 0 0 0 rgba(247,147,30,.75)}100%{box-shadow:0 0 0 8px rgba(247,147,30,0)}}
+@keyframes bob{50%{transform:translateY(-4px)}}
+@keyframes curp{0%{box-shadow:0 0 0 4px #FDE3C3}70%{box-shadow:0 0 0 11px rgba(253,227,195,0)}100%{box-shadow:0 0 0 4px #FDE3C3}}
+@keyframes shake{20%{transform:rotate(-14deg)}40%{transform:rotate(12deg)}60%{transform:rotate(-8deg)}80%{transform:rotate(4deg)}}
+@keyframes plus1{0%{opacity:0;transform:translate(-50%,-30%) scale(.6)}20%{opacity:1;transform:translate(-50%,-90%) scale(1.1)}100%{opacity:0;transform:translate(-50%,-230%) scale(1)}}
+@keyframes starpop{0%{transform:scale(.3) rotate(-30deg)}100%{transform:none}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,20px) scale(.9)}}
+@keyframes cf{0%{transform:translate(0,0) rotate(0);opacity:1}35%{transform:translate(var(--dx),var(--dy)) rotate(calc(var(--r)*.4));opacity:1}100%{transform:translate(calc(var(--dx)*1.35),560px) rotate(var(--r));opacity:0}}
+
+/* dropdown jam antar di keranjang + kotak teks ruangan */
+.slot-sel{margin:-2px 0 8px;border:1.5px solid var(--navy);box-shadow:var(--pop-s);background-color:#fff}
+.slot-in{animation:rise .3s cubic-bezier(.2,.9,.3,1.15) backwards}
+.lsel.err,.note.err{border-color:#D92D20!important;box-shadow:0 0 0 3px rgba(217,45,32,.14)!important;animation:shake2 .35s}
+.ferr{font-size:10.5px;color:#B42318;font-weight:600;margin-top:-4px}
+.opt .r{display:flex;color:var(--muted)}
+@keyframes shake2{25%{transform:translateX(-5px)}50%{transform:translateX(4px)}75%{transform:translateX(-2px)}}
+
+/* hormati pengguna yang mematikan animasi di perangkatnya */
+@media (prefers-reduced-motion:reduce){
+  .screen *,.screen *::before,.screen *::after,.dim,.dim *,.toast{animation:none!important;transition:none!important}
+  .modal > svg *{stroke-dashoffset:0!important}
+}
 </style>
 </head>
 <body>
@@ -593,6 +790,9 @@ const TENANTS = {
   dapurdorm:{name:'Dapur Mama Dorm', src:'dorm', loc:'Dorm BINUS · Pantry Lantai 1', color:'#B54708', bg:'#FEF0C7', art:'rames'},
   miedorm  :{name:'Mie Malam Dorm',  src:'dorm', loc:'Dorm BINUS · Lobby',           color:'#C11574', bg:'#FCE7F6', art:'mie_geprek'},
 };
+// warna-warni pastel per tenant (aksen), warna dasar tetap biru
+const TINTS = ['#D9EEFF','#FFE7D6','#FFE0EE','#ECF8CF','#FFF1BF','#EAE4FF'];
+Object.values(TENANTS).forEach((t,i)=>{ t.tint = TINTS[i % TINTS.length]; });
 Object.values(TENANTS).forEach(t=>{ t.src ||= 'kantin'; t.loc ||= LOKASI; if(!t.img) t.img = FA(t.art, t.bg) || phImg(t.name, t.color); });
 const srcLabel = t => TENANTS[t].src==='dorm' ? 'Dorm' : 'Kantin';
 const srcTag = t => `<span class="srctag ${TENANTS[t].src==='dorm'?'d':''}">${srcLabel(t)}</span>`;
@@ -697,8 +897,6 @@ const COURIER = {name:'Aldi Jebewan', avg:4.9, count:128};
 // FG2: pesanan bisa dibatalkan/diubah sebelum diteruskan ke tenant
 const GRACE_SEC = 30;
 // FG2: pilih kelas lewat dropdown (bukan diketik di catatan)
-const floorRooms = f => { const ff=String(f).padStart(2,'0'), r=[]; ['A','B'].forEach(w=>{ for(let i=1;i<=8;i++) r.push(`${w}${ff}${String(i).padStart(2,'0')}`); }); return [...r, `Lobby lift Lantai ${f}`, `Lounge / co-working Lantai ${f}`]; };
-const roomOpts = (f, sel) => floorRooms(f).map(r=>`<option ${r===sel?'selected':''}>${r}</option>`).join('');
 // FEEDBACK (bug jam 10.00 tampil 1.00): label slot dibuat dari angka jam yang sama dengan yang ditampilkan
 const SLOTS = (() => { const a=[]; for(let m=7*60; m<17*60; m+=30){ a.push(hm(m)+' - '+hm(m+30)); } return a; })();
 function hm(min){ return String(Math.floor(min/60)).padStart(2,'0')+'.'+String(min%60).padStart(2,'0'); }
@@ -789,9 +987,9 @@ function t0(o){ return o.start || o.created; }  // FG2: waktu mulai dihitung set
 function etaClock(o,p){ return clock(t0(o) + (p.revealed?p.actTotal:p.estTotal)*60000); }
 function stepClock(o,min){ return clock(t0(o) + min*60000); }
 
-function go(name, params={}){ S.stack.push({name, ...params}); S.sheet=null; render(); scrollTop(); }
-function back(){ if(S.stack.length>1) S.stack.pop(); else S.stack=[{name:'home'}]; S.sheet=null; render(); }
-function tab(name){ S.stack=[{name}]; S.sheet=null; render(); scrollTop(); }
+function go(name, params={}){ S.stack.push({name, ...params}); S.sheet=null; S.navDir='push'; render(); scrollTop(); }
+function back(){ if(S.stack.length>1) S.stack.pop(); else S.stack=[{name:'home'}]; S.sheet=null; S.navDir='pop'; render(); }
+function tab(name){ S.stack=[{name}]; S.sheet=null; S.navDir='fade'; render(); scrollTop(); }
 function scrollTop(){ const s=$app.querySelector('.scroll'); if(s) s.scrollTop=0; }
 function toast(msg){ S.toast=msg; render(true); clearTimeout(toast.t); toast.t=setTimeout(()=>{ S.toast=null; render(true); }, 2000); }
 function notify(o, title, body){ S.notifs.unshift({id:'n'+Date.now()+Math.random(), order:o.id, title, body, read:false}); }
@@ -841,7 +1039,7 @@ function nav(active){
   return `<nav class="bnav" aria-label="Navigasi utama">
     <button class="nv ${active==='orders'?'on':''}" data-a="tab" data-v="orders">${I.doc}<span>Pesanan</span></button>
     <button class="fab ${active==='home'?'':'ring'}" data-a="tab" data-v="home" aria-label="Beranda">${I.fork}</button>
-    <button class="nv ${active==='cart'?'on':''}" data-a="tab" data-v="cart" aria-label="Keranjang, ${cartCount()} item"><span class="nv-ic">${I.cart}${cartCount()?`<span class="badge ${S.bump?'bump':''}">${cartCount()}</span>`:''}</span><span>Keranjang</span></button>
+    <button class="nv ${active==='cart'?'on':''}" data-a="tab" data-v="cart" aria-label="Keranjang, ${cartCount()} item"><span class="nv-ic ${S.bump?'shake':''}">${I.cart}${cartCount()?`<span class="badge ${S.bump?'bump':''}">${cartCount()}</span>`:''}</span><span>Keranjang</span></button>
   </nav>`;
 }
 function hdr(title, {icons=false}={}){
@@ -871,7 +1069,7 @@ home(){
     const eta = a.slot ? `Diantar ${a.slot}` : (a.mode==='delivery' ? `Tiba ± ${etaClock(a,p)} · ${p.rem} mnt lagi` : `Siap ± ${etaClock(a,p)} · ${p.rem} mnt lagi`);
     activeCard = `<button class="active-card pop" data-a="track" data-v="${a.id}">
       <img src="${it.img}" alt="">
-      <span class="tx"><span class="st">${status}${act.length>1?` · +${act.length-1} lainnya`:''}</span>
+      <span class="tx"><span class="st"><span class="live" style="${sync(1400)}"></span>${status}${act.length>1?` · +${act.length-1} lainnya`:''}</span>
         <span class="nm">${TENANTS[a.t].name}</span>
         <span class="eta">${eta}</span></span>
       <span class="btn btn-sm">Lacak Pesanan</span>
@@ -883,14 +1081,14 @@ home(){
   const nCat = c => MENU.filter(m=>m.cat===c).length;
   const tl = Object.entries(TENANTS).filter(([k,t])=>S.homeSrc==='all' || t.src===S.homeSrc);
   return `<div class="screen">
-    <div class="scroll">
-      <div class="welcome"><div><h1>Hai, ${esc(S.user.name.split(' ')[0])} 👋</h1><p>Laper? Gas pesen, gak pake antre.</p></div>${hicons()}</div>
+    <div class="scroll stg">
+      <div class="welcome"><div><h1>Hai, ${esc(S.user.name.split(' ')[0])} <span class="wave">👋</span></h1><p>Laper? Gas pesen, gak pake antre.</p></div>${hicons()}</div>
       ${search(S.query,'hq')}
       ${activeCard}
-      <div class="cat-grid">${CATS.map(([l,c,ic,k])=>`<button class="cat pop ${k}" data-a="cat" data-v="${l}">${ic}<span>${l}<small>${nCat(c)} menu</small></span></button>`).join('')}</div>
+      <div class="cat-grid stg">${CATS.map(([l,c,ic,k])=>`<button class="cat pop ${k}" data-a="cat" data-v="${l}">${ic}<span>${l}<small>${nCat(c)} menu</small></span></button>`).join('')}</div>
       ${binusBanner()}
       <div class="sec-h">Lagi rame dicari 🔥 <button data-a="cat" data-v="Makanan Berat">Lihat semua</button></div>
-      <div class="hs">${rame.map((m,i)=>`<div class="food-card pop">
+      <div class="hs stg">${rame.map((m,i)=>`<div class="food-card pop">
         <button class="ph" data-a="find" data-v="${esc(m.name)}" aria-label="Lihat ${esc(m.name)}"><img src="${m.img}" alt="">${i<3?`<span class="rank">${I.fire}#${i+1} terlaris</span>`:''}</button>
         <div class="bd">
           <span class="nm">${esc(m.name)}</span>
@@ -899,12 +1097,12 @@ home(){
         </div>
       </div>`).join('')}</div>
       <div class="sec-h">Sesuai budget 💸</div>
-      <div class="budget">${BUDGETS.map(([k,l,,,s])=>`<button class="bchip pop" data-a="budget" data-v="${k}">${l}<small>${s}</small></button>`).join('')}</div>
+      <div class="budget stg">${BUDGETS.map(([k,l,,,s])=>`<button class="bchip pop" data-a="budget" data-v="${k}">${l}<small>${s}</small></button>`).join('')}</div>
       <div class="sec-h">Kepoin tenant yuk 👀</div>
       <div class="srcseg" role="tablist" aria-label="Sumber makanan">${[['all','Semua'],['kantin','🏫 Kantin'],['dorm','🏠 Dorm']].map(([k,l])=>`<button role="tab" aria-selected="${S.homeSrc===k}" class="${S.homeSrc===k?'on':''}" data-a="homeSrc" data-v="${k}">${l}</button>`).join('')}</div>
-      <div class="tlist">${tl.map(([k,t])=>{
+      <div class="tlist stg ${S.kick==='tl'?'anim-in':''}">${tl.map(([k,t])=>{
         const ms=MENU.filter(m=>m.t===k), min=Math.min(...ms.filter(m=>m.price>0).map(m=>m.price));
-        return `<button class="trow" data-a="tenant" data-v="${k}">
+        return `<button class="trow" style="--tint:${t.tint}" data-a="tenant" data-v="${k}">
           <img src="${t.img}" alt="">
           <span class="tx"><b>${esc(t.name)} ${srcTag(k)}</b><span class="s">${esc(t.loc)}</span>
             <span class="meta"><span class="pill">${ms.length} menu · mulai ${rp(min)}</span><span class="pill o">± ${EST.disiapkan} mnt</span></span></span>
@@ -919,9 +1117,9 @@ cat(r){
   return `<div class="screen">
     ${hdr(r.title,{icons:true})}
     ${search(S.query)}
-    ${r.title==='Makanan Berat' ? `<div class="chips" role="tablist">${CHIPS.map(([k,l])=>`<button role="tab" aria-selected="${S.filter===k}" class="chip ${S.filter===k?'on':''}" data-a="chip" data-v="${k}">${l}</button>`).join('')}</div>` : ''}
+    ${r.title==='Makanan Berat' ? `<div class="chips" role="tablist">${CHIPS.map(([k,l],i)=>`<button role="tab" aria-selected="${S.filter===k}" class="chip c${i%6} ${S.filter===k?'on':''}" data-a="chip" data-v="${k}">${l}</button>`).join('')}</div>` : ''}
     ${fbar(r)}
-    <div class="scroll" id="list">${listHTML(r)}</div>
+    <div class="scroll ${S.kick==='list'?'anim-in':''}" id="list">${listHTML(r)}</div>
     ${nav('home')}
   </div>`;
 },
@@ -942,17 +1140,21 @@ cart(){
       ${deliv ? `
         <!-- FG2: lokasi kelas dipilih lewat dropdown, bukan diketik di catatan -->
         <div class="lbl">Antar ke</div>
-        <button class="loc-card ${S.floor?'':'empty-loc'}" data-a="sheet" data-v="loc">${I.pin}<span class="tx">${S.floor?`Lantai ${S.floor} · ${esc(S.room)}`:'Pilih lantai & ruangan'}<span class="s">${S.floor?(S.locNote?'Patokan: '+esc(S.locNote):'Tambah patokan buat kurir (opsional)'):'Tinggal pilih dari daftar, gak perlu ngetik'}</span></span><span class="ch">${S.floor?'Ubah':'Pilih'}</span></button>
+        <button class="loc-card ${S.floor?'':'empty-loc'}" data-a="sheet" data-v="loc">${I.pin}<span class="tx">${S.floor?`Lantai ${S.floor} · ${esc(S.room)}`:'Pilih lantai & ruangan'}<span class="s">${S.floor?(S.locNote?'Patokan: '+esc(S.locNote):'Tambah patokan buat kurir (opsional)'):'Pilih lantai, lalu tulis ruanganmu'}</span></span><span class="ch">${S.floor?'Ubah':'Pilih'}</span></button>
         <div class="lbl">Kapan diantar?</div>
         <button class="opt ${S.when==='now'?'on':''}" data-a="when" data-v="now">Sekarang</button>
-        <button class="opt ${S.when==='later'?'on':''}" data-a="when" data-v="later">Jadwalkan nanti <span class="r">${S.when==='later'&&S.slot?S.slot:'Pilih jam ›'}</span></button>
+        <button class="opt ${S.when==='later'?'on':''}" data-a="when" data-v="later">Jadwalkan nanti ${S.when==='later'?'':`<span class="r">${I.clock}</span>`}</button>
+        ${S.when==='later' ? `<select class="lsel slot-sel ${S.slotErr?'err':''} ${S.kick==='slot'?'slot-in':''}" id="slotSel" aria-label="Jam antar">
+          <option value="" ${S.slot?'':'selected'} disabled>Pilih jam antar</option>
+          ${SLOTS.map(s=>`<option value="${s}" ${S.slot===s?'selected':''}>${s}</option>`).join('')}
+        </select>` : ''}
       ` : `
         <div class="loc-row" style="color:var(--navy)">${I.clock}<span>Estimasi waktu: 22 menit</span></div>
       `}
       </div>
       <!-- FG2: satu jenis catatan saja — per menu, langsung dibaca tenant (gaya Grab) -->
       ${Object.entries(groups).map(([t,its])=>`<div class="cgroup">
-        <div class="cg-h">${I.store}<span>${TENANTS[t].name}</span>${srcTag(t)}</div>
+        <div class="cg-h" style="--tint:${TENANTS[t].tint}">${I.store}<span>${TENANTS[t].name}</span>${srcTag(t)}</div>
         ${its.map(c=>{ const m=item(c.id); return `<div class="citem">
         <img src="${m.img}" alt="">
         <div class="tx"><div class="top"><div><div class="nm">${esc(m.name)}</div><div class="tn">${price(m.price)}${m.price?' / porsi':''}</div></div><div class="pr">${price(m.price*c.qty)}</div></div>
@@ -1035,7 +1237,7 @@ track(r){
         <div class="ln"></div><div class="fill" style="width:calc((100% - 60px) * ${p.frac})"></div>
         <span class="pt" style="left:0;background:#E8EEF3">${I.store}</span>
         <span class="pt" style="right:0;background:#E8EEF3">${I.pin}</span>
-        <span class="mv" style="left:calc(47px + (100% - 94px) * ${p.frac})">${deliv?I.s_diantar:I.s_siap}</span>
+        <span class="mv" style="left:calc(47px + (100% - 94px) * ${p.frac});${sync(900)}">${deliv?I.s_diantar:I.s_siap}</span>
       </div>
       <div class="route-l"><span>${srcLabel(o.t)}</span><span>${dest}</span></div>
       ${p.revealed?`<div class="alert warn">${I.clock}<span>Tenant butuh waktu lebih lama, estimasi diperbarui +${p.actTotal-p.estTotal} menit. Kalau terlambat, kamu dapat ${KOMPENSASI} poin kompensasi.</span></div>`:''}
@@ -1053,7 +1255,7 @@ track(r){
         <ol class="tl">${p.st.map((s,i)=>{
           const cls = i<p.idx||o.done ? 'done' : i===p.idx ? 'cur' : '';
           const t = (cls && p.times[i]!=null && !o.slot) ? `<small>${stepClock(o,p.times[i])} WIB</small>` : (cls&&o.slot&&i===0?`<small>${clock(o.created)} WIB</small>`:'');
-          return `<li class="${cls}"><span class="c">${I['s_'+s]}</span><span class="t">${LABEL[s]}${t}</span></li>`; }).join('')}</ol>
+          return `<li class="${cls}"><span class="c" ${cls==='cur'?`style="${sync(1600)}"`:''}>${I['s_'+s]}</span><span class="t">${LABEL[s]}${t}</span></li>`; }).join('')}</ol>
       </div>`}
       <div class="card"><div class="who"><div class="tx"><b>${TENANTS[o.t].name} ${srcTag(o.t)}</b><span>${esc(TENANTS[o.t].loc)}</span></div><button class="sq" data-a="chat" data-v="${o.t}" aria-label="Chat tenant">${I.chat}</button></div></div>
       ${billHTML(o.items, o, {cls:'trk', title:'Rincian Pesanan', lines:true, pay:pm?pm.name:null, cancelled:o.cancelled,
@@ -1136,7 +1338,7 @@ editProfile(){
 /* FG2: integrasi BINUS Apps (simulasi di prototype — integrasi asli butuh API/SSO dari BINUS) */
 function binusBanner(){
   if(S.binus) return `<div class="bx-ok">${I.check}<span>Terhubung ke BINUS Apps — pesan ByFood juga bisa langsung dari sana</span></div>`;
-  return `<button class="bx-banner pop" data-a="sheet" data-v="binus"><span class="bx-ic">B</span><span class="tx"><b>Pesan langsung dari BINUS Apps</b><span>Hubungkan akunmu: login otomatis &amp; notif pesanan masuk ke BINUS Apps.</span></span><span class="stk">BARU</span></button>`;
+  return `<button class="bx-banner pop" data-a="sheet" data-v="binus"><span class="bx-ic">B</span><span class="tx"><b>Pesan langsung dari BINUS Apps</b><span>Hubungkan akunmu: login otomatis &amp; notif pesanan masuk ke BINUS Apps.</span></span><span class="stk">BARU</span><span class="shine" style="${sync(3400)}"></span></button>`;
 }
 /* FG2: filter sumber (kantin/dorm), harga (budget) & urut termurah di daftar menu */
 function fbar(r){
@@ -1165,7 +1367,7 @@ function rateCard(o){
     ${o.rating.text?`<p class="rv">“${esc(o.rating.text)}”</p>`:''}</div>`;
   const r = (S.rate && S.rate.id===o.id) ? S.rate : {stars:0, tags:[], text:''};
   return `<div class="card rate"><h3>Gimana pengantaran ${COURIER.name.split(' ')[0]}? ⭐</h3><p>Rating &amp; ulasanmu bantu kurir makin oke.</p>
-    <div class="stars" role="radiogroup" aria-label="Rating kurir">${[1,2,3,4,5].map(n=>`<button role="radio" aria-checked="${r.stars===n}" class="${n<=r.stars?'on':''}" data-a="star" data-v="${o.id}|${n}" aria-label="${n} bintang">${starSvg(n<=r.stars)}</button>`).join('')}<span class="slabel">${['','Kurang','Lumayan','Oke','Bagus','Mantap!'][r.stars]}</span></div>
+    <div class="stars" role="radiogroup" aria-label="Rating kurir">${[1,2,3,4,5].map(n=>`<button role="radio" aria-checked="${r.stars===n}" class="${n<=r.stars?'on':''} ${n<=r.stars&&fxOn('star:'+o.id)?'fx':''}" style="--i:${n}" data-a="star" data-v="${o.id}|${n}" aria-label="${n} bintang">${starSvg(n<=r.stars)}</button>`).join('')}<span class="slabel">${['','Kurang','Lumayan','Oke','Bagus','Mantap!'][r.stars]}</span></div>
     <div class="rtags">${RATE_TAGS.map(t=>`<button class="qchip ${r.tags.includes(t)?'on':''}" aria-pressed="${r.tags.includes(t)}" data-a="rtag" data-v="${o.id}|${t}">${t}</button>`).join('')}</div>
     <textarea class="note" id="rvText" data-id="${o.id}" rows="2" maxlength="200" placeholder="Tulis ulasan buat kurir (opsional)">${esc(r.text)}</textarea>
     <button class="btn" style="height:38px;width:100%;margin-top:10px" data-a="sendRating" data-v="${o.id}" ${r.stars?'':'disabled'}>Kirim rating</button></div>`;
@@ -1182,13 +1384,13 @@ function cancelCard(o){
 /* jumlah item di keranjang + tombol − n + */
 function qtyOf(id){ const c=S.cart.find(c=>c.id===id); return c?c.qty:0; }
 function stepper(m){
-  return `<div class="stp"><button data-a="dec" data-v="${m.id}" aria-label="Kurangi ${esc(m.name)}">−</button><input class="stp-n" type="number" inputmode="numeric" min="0" data-id="${m.id}" value="${qtyOf(m.id)}" aria-label="Jumlah ${esc(m.name)}"><button class="plus" data-a="inc" data-v="${m.id}" aria-label="Tambah ${esc(m.name)}">+</button></div>`;
+  return `<div class="stp ${fxOn('stp:'+m.id)?'fx':''}"><button data-a="dec" data-v="${m.id}" aria-label="Kurangi ${esc(m.name)}">−</button><input class="stp-n" type="number" inputmode="numeric" min="0" data-id="${m.id}" value="${qtyOf(m.id)}" aria-label="Jumlah ${esc(m.name)}"><button class="plus" data-a="inc" data-v="${m.id}" aria-label="Tambah ${esc(m.name)}">+</button></div>`;
 }
 function setQty(id,n){
   n = Math.max(0, Math.min(99, n|0));
   const c=S.cart.find(c=>c.id===id);
   if(n===0){ S.cart=S.cart.filter(x=>x.id!==id); }
-  else if(c){ c.qty=n; } else { S.cart.push({id,qty:n}); }
+  else if(c){ c.qty=n; } else { S.cart.push({id,qty:n}); kick('stp:'+id); }
   S.bump=true; render(true); setTimeout(()=>{ S.bump=false; },420);
 }
 /* daftar menu dikelompokkan per tenant */
@@ -1208,8 +1410,8 @@ function listHTML(r){
   if(!items.length) return `<div class="list"><div class="empty"><b>Menu tidak ditemukan 😅</b>Coba kata kunci, kategori, atau filter harga lain.${filtered?`<br><br><button class="btn btn-sm" data-a="resetFilter">Hapus filter</button>`:''}</div></div>`;
   const groups = {};
   items.forEach(m => (groups[m.t] ||= []).push(m));
-  return `<div class="list">${Object.entries(groups).map(([t,ms]) => `
-    <div class="tenant-h">${I.store}<div><b>${TENANTS[t].name} ${srcTag(t)}</b><span>${esc(TENANTS[t].loc)} · siap ± ${EST.disiapkan} menit</span></div></div>
+  return `<div class="list stg">${Object.entries(groups).map(([t,ms]) => `
+    <div class="tenant-h" style="--tint:${TENANTS[t].tint}">${I.store}<div><b>${TENANTS[t].name} ${srcTag(t)}</b><span>${esc(TENANTS[t].loc)} · siap ± ${EST.disiapkan} menit</span></div></div>
     ${ms.map(m=>`<div class="row"><img src="${m.img}" alt=""><div class="info"><div class="nm">${esc(m.name)}</div><div class="tn">${TENANTS[m.t].name}</div>
       <div class="pl"><span class="pr">${price(m.price)}</span>${qtyOf(m.id)?stepper(m):`<button class="btn btn-order" data-a="order" data-v="${m.id}">Order</button>`}</div></div></div>`).join('')}
   `).join('')}</div>`;
@@ -1222,12 +1424,13 @@ function sheetHTML(){
   if(S.sheet==='pay'){ title='Pilih metode pembayaran';
     body = PAYS.map(p=>`<button class="sopt ${S.pay===p.id?'on':''}" data-a="pickPay" data-v="${p.id}">${p.id==='qris'?I.qrs:`<span class="dot" style="background:${p.color}">${p.ch}</span>`}${p.name}</button>`).join(''); }
   // FG2: pilih lantai & kelas lewat dropdown (sebelumnya diketik di kolom catatan)
-  if(S.sheet==='loc'){ title='Antar ke mana?'; sub='Pilih lantai & ruangan kelasmu, kurir langsung tahu harus ke mana.';
+  if(S.sheet==='loc'){ title='Antar ke mana?'; sub='Pilih lantai, lalu tulis ruangan kelasmu.';
     const f = S.floor || 1;
     body = `<label class="flb" for="selFloor">Lantai</label>
       <select class="lsel" id="selFloor">${Array.from({length:15},(_,i)=>i+1).map(n=>`<option value="${n}" ${n===f?'selected':''}>Lantai ${n}</option>`).join('')}</select>
-      <label class="flb" for="selRoom">Ruangan / area</label>
-      <select class="lsel" id="selRoom">${roomOpts(f, S.room)}</select>
+      <label class="flb" for="roomIn">Ruangan / area</label>
+      <input class="note" id="roomIn" style="height:42px" maxlength="40" placeholder="cth: A1205, lobby lift, lounge" value="${esc(S.room)}" autocomplete="off">
+      <small class="ferr" id="roomErr" hidden>Isi ruangan dulu ya, biar kurir gak nyasar</small>
       <label class="flb" for="locNote">Patokan buat kurir <small>(opsional)</small></label>
       <input class="note" id="locNote" style="height:42px" maxlength="60" placeholder="cth: meja dekat jendela, jaket hijau" value="${esc(S.locNote)}">
       <button class="btn" style="height:42px;margin-top:6px;flex-shrink:0" data-a="saveLoc">Simpan lokasi</button>`; }
@@ -1245,8 +1448,6 @@ function sheetHTML(){
       <div class="bxi"><span>🔔</span><div><b>Notif pesanan di satu tempat</b><small>Status pesanan & jadwal antar ikut masuk ke notifikasi BINUS Apps.</small></div></div>
     </div>
     <button class="btn ${S.binus?'btn-ghost':''}" style="height:42px;flex-shrink:0" data-a="connectBinus">${S.binus?'Putuskan koneksi':'Hubungkan '+esc(S.user.email)}</button>`; }
-  if(S.sheet==='time'){ title='Pilih kapan makanan mu diantar';
-    body = SLOTS.map(s=>`<button class="sopt ${S.slot===s?'on':''}" data-a="pickSlot" data-v="${s}">${I.clock}${s}</button>`).join(''); }
   if(S.sheet==='voucher'){ title='Kode Voucher';
     body = `<input class="note" id="vc" placeholder="Masukkan kode voucher" style="height:40px"><button class="btn" style="height:38px;margin-top:6px" data-a="applyVoucher">Pakai</button>`; }
   return `<div class="dim" data-a="closeSheet"><div class="sheet" role="dialog" aria-label="${title}"><div class="handle"></div><h2>${title}</h2>${sub?`<p class="sub">${sub}</p>`:''}<div class="opts">${body}</div></div></div>`;
@@ -1271,6 +1472,42 @@ function modalHTML(){
 }
 
 /* ======================= RENDER ======================= */
+/* ANIMASI: animasi masuk hanya diputar saat pindah layar / buka sheet baru,
+   bukan setiap kali layar di-render ulang (mis. update status tiap detik). */
+const A = {screen:null, sheet:null, modal:null, toast:null};
+function animGuard(r){
+  const key = S.stack.length + ':' + JSON.stringify(r);
+  let scr = SCREENS[r.name](r);
+  if(key !== A.screen && !S.splash){ scr = scr.replace('class="screen', `class="anim-in nav-${S.navDir||'fade'} screen`); A.screen = key; }
+  let sh = sheetHTML(); if(sh && S.sheet===A.sheet) sh = sh.replace('class="dim"', 'class="dim still"'); A.sheet = S.sheet;
+  const mk = JSON.stringify(S.modal); let md = modalHTML(); if(md && mk===A.modal) md = md.replace('class="dim center"', 'class="dim center still"'); A.modal = S.modal ? mk : null;
+  const tt = S.toast ? `<div class="toast ${S.toast===A.toast?'still':''}" role="status">${esc(S.toast)}</div>` : ''; A.toast = S.toast;
+  S.navDir = null; S.kick = null;
+  return scr + sh + md + tt;
+}
+/* animasi kecil: efek sekali pakai (stepper muncul, bintang rating) */
+function kick(k, ms=600){ S.fx = {k, until: Date.now()+ms}; }
+const fxOn = k => S.fx && S.fx.k===k && Date.now() < S.fx.until;
+/* animasi berulang tetap mulus walau elemennya dibuat ulang: fase disinkronkan ke jam */
+const sync = ms => `animation-delay:-${(Date.now()%ms)/1000}s`;
+const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+function floatPlus(el){
+  if(reduced()) return;
+  const r = el.getBoundingClientRect(), d = document.createElement('span');
+  d.className='plus1'; d.textContent='+1'; d.style.left=(r.left+r.width/2)+'px'; d.style.top=(r.top)+'px';
+  document.body.appendChild(d); setTimeout(()=>d.remove(), 850);
+}
+function confetti(n=46){
+  if(reduced()) return;
+  const box = $app.getBoundingClientRect(), cols = ['#0880DE','#4DB0F5','#0668B8','#F7931E','#FF4D8D','#C8F169','#FFD23F','#7A5AF8'];
+  for(let i=0;i<n;i++){
+    const d = document.createElement('i'); d.className='cf';
+    d.style.cssText = `left:${box.left+box.width*(.2+Math.random()*.6)}px;top:${box.top+box.height*.42}px;background:${cols[i%cols.length]};`+
+      `--dx:${(Math.random()-.5)*300}px;--dy:${-140-Math.random()*240}px;--r:${(Math.random()-.5)*900}deg;`+
+      `width:${6+Math.random()*6}px;height:${8+Math.random()*9}px;border-radius:${Math.random()<.4?'50%':'2px'};animation-delay:${Math.random()*.15}s`;
+    document.body.appendChild(d); setTimeout(()=>d.remove(), 1900);
+  }
+}
 function render(keepScroll){
   const sc = $app.querySelector('.scroll'), top = sc ? sc.scrollTop : 0;
   const hs = $app.querySelector('.hs'), left = hs ? hs.scrollLeft : 0;
@@ -1285,7 +1522,7 @@ function render(keepScroll){
       <div class="sp-load"><i></i></div>
       <div class="sp-foot">BINUS University · Kantin &amp; Dorm</div>
     </div>` : '')
-    + SCREENS[r.name](r) + sheetHTML() + modalHTML() + (S.toast ? `<div class="toast" role="status">${esc(S.toast)}</div>` : '');
+    + animGuard(r);
   if(keepScroll){ const s=$app.querySelector('.scroll'); if(s) s.scrollTop = top; const h=$app.querySelector('.hs'); if(h) h.scrollLeft = left; }
   if(focusId){ const el=document.getElementById(focusId); if(el){ el.focus(); if(el.setSelectionRange && el.type!=='date' && el.type!=='email') try{ el.setSelectionRange(el.value.length, el.value.length);}catch(e){} } }
   const m=document.getElementById('msgs'); if(m) m.scrollTop=m.scrollHeight;
@@ -1297,7 +1534,7 @@ function continueCheckout(){
   if(!S.cart.length) return;
   S.pending = true;
   if(S.mode==='delivery' && (!S.floor || !S.room)){ S.sheet='loc'; return render(true); }
-  if(S.mode==='delivery' && S.when==='later' && !S.slot){ S.sheet='time'; return render(true); }
+  if(S.mode==='delivery' && S.when==='later' && !S.slot){ S.pending=false; S.slotErr=true; toast('Pilih jam antar dulu ya ⏰'); setTimeout(()=>document.getElementById('slotSel')?.focus(),30); return; }
   if(!S.pay){ S.sheet='pay'; return render(true); }
   S.pending=false; S.sheet=null; go('pay');
 }
@@ -1314,7 +1551,7 @@ function placeOrder(){
     S.orders.unshift(o); ids.push(o.id);
     notify(o,'Pesananmu sudah terbayar!','Pesananmu sudah terbayar! tinggal menunggu makananmu selesai disiapkan, dan bisa segera diambil/diantar. Cek status makananmu disini');
   });
-  S.cart=[]; S.lastOrders=ids; S.lastSlot=!!slot; S.modal='success';
+  S.cart=[]; S.lastOrders=ids; S.lastSlot=!!slot; S.modal='success'; setTimeout(()=>confetti(), 120);
   render();
 }
 
@@ -1325,27 +1562,31 @@ const ACT = {
   cat(v){ resetF(); go('cat',{title:v}); },
   find(v){ resetF(); S.query=v; go('cat',{title:'Hasil Pencarian', all:true}); },
   tenant(v){ resetF(); go('cat',{title:TENANTS[v].name, tenant:v}); },
-  chip(v){ S.filter=v; render(true); },
+  chip(v){ S.filter=v; S.kick='list'; render(true); },
   // FG2: filter sumber, harga, urutan
   budget(v){ resetF(); S.budget=v; S.sort=true; go('cat',{title:'Sesuai Budget 💸', all:true}); },
-  fbudget(v){ S.budget = S.budget===v ? 'all' : v; render(true); },
-  src(v){ S.src = S.src===v ? 'all' : v; render(true); },
-  sort(){ S.sort=!S.sort; render(true); },
-  resetFilter(){ S.budget='all'; S.src='all'; S.filter='all'; render(true); },
-  homeSrc(v){ S.homeSrc=v; render(true); },
+  fbudget(v){ S.budget = S.budget===v ? 'all' : v; S.kick='list'; render(true); },
+  src(v){ S.src = S.src===v ? 'all' : v; S.kick='list'; render(true); },
+  sort(){ S.sort=!S.sort; S.kick='list'; render(true); },
+  resetFilter(){ S.budget='all'; S.src='all'; S.filter='all'; S.kick='list'; render(true); },
+  homeSrc(v){ S.homeSrc=v; S.kick='tl'; render(true); },
   // FG2: lokasi via dropdown
-  saveLoc(){ S.floor=+document.getElementById('selFloor').value; S.room=document.getElementById('selRoom').value; S.locNote=document.getElementById('locNote').value.trim(); S.sheet=null; if(S.pending) continueCheckout(); else render(true); },
+  saveLoc(){
+    const room = document.getElementById('roomIn'), err = document.getElementById('roomErr');
+    if(!room.value.trim()){ room.classList.add('err'); err.hidden=false; room.focus(); return; }
+    S.floor=+document.getElementById('selFloor').value; S.room=room.value.trim(); S.locNote=document.getElementById('locNote').value.trim();
+    S.sheet=null; if(S.pending) continueCheckout(); else render(true); },
   // FG2: catatan per menu
   noteItem(v){ S.noteFor=v; S.sheet='itemNote'; render(true); setTimeout(()=>document.getElementById('itemNoteIn')?.focus(),50); },
   qnote(v){ const ta=document.getElementById('itemNoteIn'); const cur=ta.value.trim().replace(/[,\s]+$/,''); if(!cur.toLowerCase().includes(v.toLowerCase())) ta.value = cur ? cur+', '+v.toLowerCase() : v; ta.focus(); },
   saveNote(){ const c=S.cart.find(x=>x.id===S.noteFor); if(c) c.note=document.getElementById('itemNoteIn').value.trim(); S.sheet=null; render(true); },
   // FG2: rating & review kurir
-  star(v){ const [id,n]=v.split('|'); rateDraft(id).stars=+n; render(true); },
+  star(v){ const [id,n]=v.split('|'); rateDraft(id).stars=+n; kick('star:'+id); render(true); },
   rtag(v){ const [id,t]=v.split('|'), r=rateDraft(id); r.tags = r.tags.includes(t) ? r.tags.filter(x=>x!==t) : [...r.tags,t]; render(true); },
   sendRating(v){ const o=order(v), r=rateDraft(v); if(!r.stars) return;
     o.rating={stars:r.stars, tags:r.tags, text:(r.text||'').trim()};
     COURIER.avg=(COURIER.avg*COURIER.count + r.stars)/(COURIER.count+1); COURIER.count++;
-    S.rate=null; toast('Makasih! Rating terkirim ⭐'); },
+    S.rate=null; confetti(28); toast('Makasih! Rating terkirim ⭐'); },
   // FG2: batal / ubah pesanan
   askCancel(v){ S.modal={type:'cancel', id:v, change:false}; render(true); },
   askChange(v){ S.modal={type:'cancel', id:v, change:true}; render(true); },
@@ -1368,10 +1609,9 @@ const ACT = {
   inc(v){ setQty(v, qtyOf(v)+1); },
   dec(v){ setQty(v, qtyOf(v)-1); },
   mode(v){ S.mode=v; render(true); },
-  when(v){ if(v==='later'){ S.sheet='time'; } else { S.when='now'; } render(true); },
+  when(v){ if(v==='later'){ if(S.when!=='later') S.kick='slot'; S.when='later'; } else { S.when='now'; S.slotErr=false; } render(true); },
   sheet(v){ S.pending=false; S.sheet=v; render(true); },
   closeSheet(v,el,e){ if(e.target===el){ S.sheet=null; S.pending=false; render(true); } },
-  pickSlot(v){ S.slot=v; S.when='later'; S.sheet=null; if(S.pending) continueCheckout(); else render(true); },
   pickPay(v){ S.pay=v; S.sheet=null; if(S.pending) continueCheckout(); else render(true); },
   checkout(){ continueCheckout(); },
   voucher(){ S.sheet='voucher'; render(true); },
@@ -1392,7 +1632,7 @@ function resetF(){ S.filter='all'; S.query=''; S.budget='all'; S.src='all'; S.so
 function rateDraft(id){ if(!S.rate || S.rate.id!==id) S.rate={id, stars:0, tags:[], text:''}; return S.rate; }
 $app.addEventListener('click', e => {
   const el = e.target.closest('[data-a]'); if(!el) return;
-  const fn = ACT[el.dataset.a]; if(fn){ e.preventDefault(); fn(el.dataset.v, el, e); }
+  const fn = ACT[el.dataset.a]; if(fn){ e.preventDefault(); if(el.dataset.a==='order'||el.dataset.a==='inc') floatPlus(el); fn(el.dataset.v, el, e); }
 });
 $app.addEventListener('submit', e => {
   e.preventDefault();
@@ -1412,11 +1652,12 @@ $app.addEventListener('submit', e => {
 });
 $app.addEventListener('change', e => {
   const t=e.target; if(t.classList.contains('stp-n')) setQty(t.dataset.id, parseInt(t.value,10)||0);
-  if(t.id==='selFloor') document.getElementById('selRoom').innerHTML = roomOpts(+t.value);   // FG2: ruangan ikut lantai
+  if(t.id==='slotSel'){ S.slot=t.value; S.slotErr=false; t.classList.remove('err'); }   // jam antar dipilih dari dropdown
 });
 $app.addEventListener('input', e => {
   const t=e.target;
   if(t.id==='rvText') rateDraft(t.dataset.id).text=t.value;
+  if(t.id==='roomIn' && t.value.trim()){ t.classList.remove('err'); const e=document.getElementById('roomErr'); if(e) e.hidden=true; }
   if(t.id==='q'){ S.query=t.value; document.getElementById('list').innerHTML=listHTML(cur()); }
 });
 $app.addEventListener('keydown', e => {
@@ -1460,7 +1701,7 @@ render();
 function endSplash(){
   if(!S.splash || endSplash.done) return; endSplash.done=true;
   const el=$app.querySelector('.splash'); if(el) el.classList.add('hide');
-  setTimeout(()=>{ S.splash=false; render(); }, 450);
+  setTimeout(()=>{ S.splash=false; S.navDir='fade'; render(); }, 450);
 }
 setTimeout(endSplash, 3000);
 </script>
